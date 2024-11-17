@@ -1,0 +1,76 @@
+---
+title: "Factors Influencing Breast Cancer Survival"
+author: "Kelly Longhini"
+date: "`r format(Sys.Date(), '%b %d %Y')`"
+output:
+  bookdown::html_document2:
+    toc: TRUE
+params:
+  production: TRUE
+---
+
+```{r, set-chunk-opts, echo = FALSE, eval = params$production}
+library(knitr)
+opts_chunk$set(
+  echo = FALSE, warning = FALSE, message = FALSE
+)
+```
+
+```{r, load-packages}
+pacman::p_load(janitor, tidyverse, rio, dplyr, here, knitr, esquisse, labelled, gtsummary, ggplot2)
+```
+
+```{r, load-data}
+here::i_am("final_report.Rmd")
+absolute_path_to_data <- here::here("Breast_Cancer.csv")
+breast_cancer <- read.csv(absolute_path_to_data, header=TRUE) |>
+  clean_names()
+```
+
+# Introduction
+The breast cancer data set was obtained from the November 2017 update of the SEER cancer registry. The female patients were diagnosed with invasive ductal and lobular carcinoma breast cancer in 2006-2010, and the data set includes 4,024 patients (exclusion criteria: patients with unknown tumor size, patients with survival less than 1 month, patients with unknown regional lymph nodes examined, and patients with unknown positive regional lymph nodes). Invasive ductal carcinoma is the most common type of breast cancer, originating in the milk ducts of the breast. Invasive lobular carcinoma is the second-most common type of breast cancer, originating in the milk-producing lobules of the breast. Several demographic factors, stage and grade of cancer, estrogen and progesterone status, and survival status are included.
+(Source: https://www.kaggle.com/datasets/reihanenamdari/breast-cancer/data)
+
+This analysis intends to assess whether invasive ductal and lobular carcinoma breast cancer survival status (dead vs alive) varies by cancer grade (grades 1-4) in this sample. It will also consider the influence of age, cancer stage, estrogen status, progesterone status, and tumor size. A binary logistic regression will be performed to assess this relationship as the outcome of survival status is binary (dead vs alive). 
+
+# Descriptive Analysis
+
+## Tabular analysis
+```{r, table1}
+
+```
+Table \@ref(tab:table1) provides a descriptive tabular analysis of the primary exposure (cancer grade) and covariates of interest (stage, estrogen and progesterone status, tumor size, and age), overall and stratified by the survival status outcome. Grade, stage, estrogen status, and progesterone status are character variables and therefore the counts and frequencies are presented. Tumor size and age are continuous numeric variables and therefore the median and first and third quartiles are presented. A brief review of the table indicates that older age and larger tumor size exist for cancer patients that are dead compared to alive. Furthermore, grades 3 and 4 cancers are more frequent among dead patients, and grades 1 and 2 cancers are more frequent among alive patients. Distant cancers, negative estrogen status, and negative progesterone status are more frequent among dead patients. Regional cancers, positive estrogen status, and positive progesterone status are more frequent among alive patients. 
+
+
+## Graphical analysis
+
+```{r, barplot1, fig.cap="Bar plot of survival status by breast cancer grade"}
+#| fig.align = "center",
+#| out.width = "700px"
+
+```
+
+Figure \@ref(fig:barplot) is a bar plot that visually depicts the percentage of the binary survival status outcome across the four levels of the cancer grade exposure. It shows that as cancer grade progresses from 1 to 4, the percent of patients that are dead increases and the percent of patients that are alive decreases, within each group.  
+
+```{r, barplot2, fig.cap="Bar plot of breast cancer grade by survival status"}
+#| fig.align = "center",
+#| out.width = "700px"
+
+
+```
+
+An alternate way to depict the relationship between breast cancer grade and survival status is depicted in Figure \@ref(fig:barplot2). Now, the percentage of patients with each of the 4 cancer grades is displayed within the two outcome statuses of alive and dead. This graph more clearly shows that grades 3 and 4 cancers are more frequent among dead patients, and grades 1 and 2 cancers are more frequent among alive patients.  
+
+
+# Regression Analysis
+
+## Primary model
+```{r, primary-model}
+
+
+```
+Table \@ref(tab:primary-model) displays the logistic regression output. In this analysis, logistic regression was used due to the binary outcome of survival status. From the odds ratios for cancer grade, we see that as cancer progresses from grade 1 to 4, the frequency of death due to breast cancer increases (because "Alive" was coded as 0 and "Dead" was coded as 1). This is evident in the odds ratios increasing from 1.81 for grade 2, to 3.03 for grade 3, and 8.65 for grade 4. 
+
+(Note: In practice, I would consider creating indicator/dummy variables for the cancer grades. This analysis assumes that going from grade 1 to grade 2, from grade 2 to grade 3, and from grade 3 to grade 4 is the same. I would have to do some literature review to understand if these differences are actually the same.)
+
+
