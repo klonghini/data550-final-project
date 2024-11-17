@@ -1,7 +1,5 @@
 # Rscript for data cleaning
 
-# Read in the data
-
 library(here)
 library(janitor)
 here::i_am("code/00_clean_data.R")
@@ -21,4 +19,9 @@ fivenum(breast_cancer$tumor_size)
 
 
 # Save cleaned data to the data folder
+saveRDS(
+  breast_cancer,
+  file = here::here("data", "breast_cancer.rds")
+)
+
 

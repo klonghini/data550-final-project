@@ -2,8 +2,15 @@
 
 library(labelled)
 library(gtsummary)
+library(forcats)
 
 # Load in data
+here::i_am("code/01_make_table1.R")
+
+breast_cancer <- readRDS(
+  file = here::here("data/breast_cancer.rds")
+)
+
 
 breast_cancer$status_numeric <- ifelse(breast_cancer$status == "Alive", 0, 1)
 
@@ -23,7 +30,7 @@ var_label(breast_cancer) <- list(
   tumor_size = "Tumor Size (mm)"
 )
 
-breast_cancer |>
+table1 <- breast_cancer |>
   select("status", "grade_revised", "a_stage", "estrogen_status", "progesterone_status", "tumor_size", "age") |>
   tbl_summary(by = status) |>
   modify_spanning_header(c("stat_1", "stat_2") ~ "**Survival Status**") |>
@@ -32,3 +39,7 @@ breast_cancer |>
   add_overall() |>
   add_p()
 
+saveRDS(
+  table1,
+  file = here::here("output", "table1.rds")
+)

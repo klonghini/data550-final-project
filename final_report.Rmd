@@ -17,14 +17,16 @@ opts_chunk$set(
 ```
 
 ```{r, load-packages}
-pacman::p_load(janitor, tidyverse, rio, dplyr, here, knitr, esquisse, labelled, gtsummary, ggplot2)
+pacman::p_load(janitor, tidyverse, rio, dplyr, forcats, here, knitr, esquisse, labelled, gtsummary, ggplot2)
 ```
 
 ```{r, load-data}
 here::i_am("final_report.Rmd")
-absolute_path_to_data <- here::here("Breast_Cancer.csv")
-breast_cancer <- read.csv(absolute_path_to_data, header=TRUE) |>
-  clean_names()
+
+breast_cancer <- readRDS(
+  file = here::here("data/breast_cancer.rds")
+)
+
 ```
 
 # Introduction
@@ -37,7 +39,9 @@ This analysis intends to assess whether invasive ductal and lobular carcinoma br
 
 ## Tabular analysis
 ```{r, table1}
-
+readRDS(
+  file = here::here("output", "table1.rds")
+)
 ```
 Table \@ref(tab:table1) provides a descriptive tabular analysis of the primary exposure (cancer grade) and covariates of interest (stage, estrogen and progesterone status, tumor size, and age), overall and stratified by the survival status outcome. Grade, stage, estrogen status, and progesterone status are character variables and therefore the counts and frequencies are presented. Tumor size and age are continuous numeric variables and therefore the median and first and third quartiles are presented. A brief review of the table indicates that older age and larger tumor size exist for cancer patients that are dead compared to alive. Furthermore, grades 3 and 4 cancers are more frequent among dead patients, and grades 1 and 2 cancers are more frequent among alive patients. Distant cancers, negative estrogen status, and negative progesterone status are more frequent among dead patients. Regional cancers, positive estrogen status, and positive progesterone status are more frequent among alive patients. 
 
@@ -48,15 +52,20 @@ Table \@ref(tab:table1) provides a descriptive tabular analysis of the primary e
 #| fig.align = "center",
 #| out.width = "700px"
 
+knitr::include_graphics(
+  here::here("output/barplot1.png")
+)
 ```
 
-Figure \@ref(fig:barplot) is a bar plot that visually depicts the percentage of the binary survival status outcome across the four levels of the cancer grade exposure. It shows that as cancer grade progresses from 1 to 4, the percent of patients that are dead increases and the percent of patients that are alive decreases, within each group.  
+Figure \@ref(fig:barplot1) is a bar plot that visually depicts the percentage of the binary survival status outcome across the four levels of the cancer grade exposure. It shows that as cancer grade progresses from 1 to 4, the percent of patients that are dead increases and the percent of patients that are alive decreases, within each group.  
 
 ```{r, barplot2, fig.cap="Bar plot of breast cancer grade by survival status"}
 #| fig.align = "center",
 #| out.width = "700px"
 
-
+knitr::include_graphics(
+  here::here("output/barplot2.png")
+)
 ```
 
 An alternate way to depict the relationship between breast cancer grade and survival status is depicted in Figure \@ref(fig:barplot2). Now, the percentage of patients with each of the 4 cancer grades is displayed within the two outcome statuses of alive and dead. This graph more clearly shows that grades 3 and 4 cancers are more frequent among dead patients, and grades 1 and 2 cancers are more frequent among alive patients.  
@@ -66,8 +75,9 @@ An alternate way to depict the relationship between breast cancer grade and surv
 
 ## Primary model
 ```{r, primary-model}
-
-
+readRDS(
+  file = here::here("output", "regression_model.rds")
+)
 ```
 Table \@ref(tab:primary-model) displays the logistic regression output. In this analysis, logistic regression was used due to the binary outcome of survival status. From the odds ratios for cancer grade, we see that as cancer progresses from grade 1 to 4, the frequency of death due to breast cancer increases (because "Alive" was coded as 0 and "Dead" was coded as 1). This is evident in the odds ratios increasing from 1.81 for grade 2, to 3.03 for grade 3, and 8.65 for grade 4. 
 
