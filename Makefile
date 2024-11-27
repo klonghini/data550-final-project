@@ -24,8 +24,13 @@ output/barplot2.png: code/03_make_barplot2.R data/breast_cancer.rds
 output/regression_model.rds: code/04_make_regression_primary_model.R data/breast_cancer.rds
 	Rscript code/04_make_regression_primary_model.R
 	
-	
+.PHONY: install
+install: 
+	Rscript -e "renv::restore(prompt = FALSE)"
+
 .PHONY: clean
 clean:
 	rm -f data/*.rds output/*.png && \
 	rm -f final_report.html
+	
+	

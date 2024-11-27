@@ -40,6 +40,7 @@
   
 ## Generating the final report
   - fork and clone the repository, and ensure that all code pieces are present
-  - use the make function in the terminal, as "make final_report.html" or simply "make", and the html report should build
+  - run `make install` in the terminal (from the command line) to synchronize your package repository
+  - run `make` in the terminal (from the command line), and the final html report will build
   
   
