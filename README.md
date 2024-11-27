@@ -39,8 +39,8 @@
   - includes an introduction to the project, a descriptive analysis with table 1, barplot 1, and barplot 2, and a regression analysis with the primary model
   
 ## Generating the final report
-  - fork and clone the repository, and ensure that all code pieces are present
-  - run `make install` in the terminal (from the command line) to synchronize your package repository
-  - run `make` in the terminal (from the command line), and the final html report will build
+  - Fork and clone the repository, and ensure that all code pieces are present
+  - Run `make install` in the terminal (from the command line) to synchronize your package repository with the required packages for the project
+  - Run `make` in the terminal (from the command line), and the final html report will build
   
   
