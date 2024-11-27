@@ -40,7 +40,8 @@
   
 ## Generating the final report
   - Fork and clone the repository, and ensure that all code pieces are present
+  - Set your working directory to the location of the final-project folder
   - Run `make install` in the terminal (from the command line) to synchronize your package repository with the required packages for the project
-  - Run `make` in the terminal (from the command line), and the final html report will build
+  - Run `make` in the terminal (from the command line), and the final_report.html will build
   
   
