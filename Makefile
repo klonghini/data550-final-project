@@ -5,7 +5,7 @@ final_report.html: final_report.Rmd code/05_render_report.R data/breast_cancer.r
 	Rscript code/05_render_report.R
 
 # create the output of code/00_clean_data.R
-data/breast_cancer.rds: code/00_clean_data.R data/Breast_cancer.csv
+data/breast_cancer.rds: code/00_clean_data.R data/Breast_Cancer.csv
 	Rscript code/00_clean_data.R
 
 # create the output of code/01_make_table1.R
@@ -33,4 +33,13 @@ clean:
 	rm -f data/*.rds output/*.png && \
 	rm -f final_report.html
 	
-	
+#Docker-associated rules
+
+# when using Mac/Linux-OS
+mac-linux/report/final_report.html: 
+	docker run -v "$$(pwd)/report":/project/report klonghini/data-550-final-project
+
+# when using Windows-OS
+windows/report/final_report.html:
+	docker run -v "/$$(pwd)/report":/project/report klonghini/data-550-final-project
+
