@@ -58,7 +58,7 @@ Instructions for building the Docker image
 - Navigate to the image on DockerHub: https://hub.docker.com/r/klonghini/data-550-final-project
 - Run `docker pull klonghini/data-550-final-project` in the terminal (from the command line). 
 - To build the image locally, run `docker build -t data-550-final-project .` in the terminal (from the command line).
-- To run the image interactively, run `docker build -t data-550-final-project bash>` in the terminal (from the command line).
+- To run the image interactively, run `docker run -it data-550-final-project bash` in the terminal (from the command line).
 
 Instructions for running the automated version of the image
 - On Mac OS, run `make mac-linux/report/final_report.html` in the terminal (from the command line).
