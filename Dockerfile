@@ -77,5 +77,9 @@ COPY final_report.Rmd .
 
 RUN mkdir report
 
+###### END OF BUILD 2 ######
+
 CMD make && mv final_report.html report
+
+###### END OF BUILD 3 ######
 

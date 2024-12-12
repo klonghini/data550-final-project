@@ -43,7 +43,7 @@
 # Generating the final report
 ## One way to generate the final report... 
 
-  - Fork and clone the repository from GitHub to your local computer, and ensure that all code pieces are present
+  - Fork and clone the repository from GitHub to your local computer, and ensure that all code pieces are present.
   - Navigate to the main project folder, "final-project", and set it as your working directory. 
   - Run `make install` in the terminal (from the command line) to synchronize your package repository with the required packages for the project. This is a shortcut to running `renv::restore()`, which restores the package library.
   - Run `make` in the terminal (from the command line), and the final_report.html will build. This command will sequentially clean the data, generate the table and figures, perform the analysis, and render the final report.
@@ -51,19 +51,19 @@
   
 ## Alternative, fully automated generation of the final report using Docker...
 
-  - Fork and clone the repository from GitHub to your local computer, and ensure that all code pieces are present
+  - Fork and clone the repository from GitHub to your local computer, and ensure that all code pieces are present.
   - Navigate to the main project folder, "final-project", and set it as your working directory. 
 
 Instructions for building the Docker image
+- Navigate to the image on DockerHub: https://hub.docker.com/r/klonghini/data-550-final-project
+- Run `docker pull klonghini/data-550-final-project` in the terminal (from the command line). 
+- To build the image locally, run `docker build -t data-550-final-project .` in the terminal (from the command line).
+- To run the image interactively, run `docker build -t data-550-final-project bash>` in the terminal (from the command line).
 
-Link to the image on DockerHub: https://hub.docker.com/r/klonghini/data-550-final-project
-
-Instructions for running the automated version of the image (creating the report)
-- On Mac OS
-`make mac-linux/report/final_report.html`
-
-- On Windows OS
-`make windows/report/final_report.html`
+Instructions for running the automated version of the image
+- On Mac OS, run `make mac-linux/report/final_report.html` in the terminal (from the command line).
+- On Windows OS, run `make windows/report/final_report.html` in the terminal (from the command line).
+- The final report will build. Once the process completes, navigate to the "report" folder to locate the final_report.html. 
 
 
 
