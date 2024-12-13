@@ -55,6 +55,7 @@
   - Navigate to the main project folder, "final-project", and set it as your working directory. 
 
 **Instructions for building the Docker image**
+
 Option #1:
 - To access the image on Dockerhub, navigate to: https://hub.docker.com/r/klonghini/data-550-final-project
 - Run `docker pull klonghini/data-550-final-project` in the terminal (from the command line). 
