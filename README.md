@@ -54,16 +54,16 @@
   - Fork and clone the repository from GitHub to your local computer, and ensure that all code pieces are present.
   - Navigate to the main project folder, "final-project", and set it as your working directory. 
 
-Instructions for building the Docker image
-  Option #1:
+**Instructions for building the Docker image**
+Option #1:
 - To access the image on Dockerhub, navigate to: https://hub.docker.com/r/klonghini/data-550-final-project
 - Run `docker pull klonghini/data-550-final-project` in the terminal (from the command line). 
 
-  Option #2: 
+Option #2: 
 - To build the image locally, run `docker build -t klonghini/data-550-final-project .` in the terminal (from the command line).
 - To run the image interactively, run `docker run -it klonghini/data-550-final-project bash` in the terminal (from the command line).
 
-Instructions for running the automated version of the image
+**Instructions for running the automated version of the image**
 - On Mac OS, run `make mac-linux/report/final_report.html` in the terminal (from the command line).
 - On Windows OS, run `make windows/report/final_report.html` in the terminal (from the command line).
 - The final report will build. Once the process completes, navigate to the local "report" folder to locate the final_report.html. 
